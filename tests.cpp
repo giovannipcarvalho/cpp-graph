@@ -22,5 +22,18 @@ int main() {
 	assert(g.edgeExists(2, 3));
 	assert(g.edgeExists(3, 0));
 
+
+	char file[] = "graph-file.txt";
+	Graph h(file);
+
+	assert(h.successors(0)[0] == 1);
+
+	assert(h.edgeExists(0, 1));
+	assert(h.edgeExists(1, 0));
+	assert(h.edgeExists(1, 2));
+	assert(h.edgeExists(2, 0));
+	assert(h.edgeExists(2, 3));
+	assert(h.edgeExists(3, 0));
+
 	cout << "Tests passed" << endl;
 }
