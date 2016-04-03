@@ -15,7 +15,7 @@ private:
 public:
 	Graph(int n);
 
-	Graph(char * filename);
+	Graph(const char * filename);
 
 	void addEdge(int a, int b);
 
