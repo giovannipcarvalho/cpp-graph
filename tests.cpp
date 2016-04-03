@@ -21,4 +21,6 @@ int main() {
 	assert(g.edgeExists(2, 0));
 	assert(g.edgeExists(2, 3));
 	assert(g.edgeExists(3, 0));
+
+	cout << "Tests passed" << endl;
 }
