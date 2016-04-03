@@ -6,8 +6,8 @@
 using namespace std;
 
 void edge_adder(Graph & g, int v, string line){
-	char * cp;
-	cp = strtok(strdup(line.c_str()), " ");
+	char * str = (char*) line.c_str();
+	char * cp = strtok(str, " ");
 	while (cp != nullptr){
 		g.addEdge(v, atoi(cp));
 		cp = strtok(nullptr, " ");
