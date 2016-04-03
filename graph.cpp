@@ -35,6 +35,7 @@ Graph::Graph(const char * filename){
 	}
 
 	*this = *g;
+	delete g;
 }
 
 void Graph::addEdge(int a, int b){
