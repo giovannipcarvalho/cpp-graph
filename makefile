@@ -7,3 +7,7 @@ all: main.cpp
 
 test: test.cpp
 	$(CC) $(FLAGS) test.cpp graph.cpp -o test
+
+.PHONY: clean
+clean:
+	rm main test
