@@ -17,7 +17,6 @@ void edge_adder(Graph & g, int v, string line){
 Graph::Graph(int n) {
 	vertices = n;
 	adj = vector< vector<int> >(n);
-	cout << "Initializing graph" << endl;
 }
 
 Graph::Graph(char * filename){
