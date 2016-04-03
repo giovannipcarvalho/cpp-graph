@@ -20,7 +20,21 @@ Graph::Graph(int n) {
 }
 
 Graph::Graph(char * filename){
-	cout << filename << endl;
+	ifstream file(filename);
+
+	int c = 0;
+
+	Graph * g;
+
+	for (string line; getline(file, line); ){
+		if(c == 0)
+			g = new Graph(atoi(line.c_str())); // init graph
+		else
+			edge_adder(*g, c-1, line);
+		++c;
+	}
+
+	*this = *g;
 }
 
 void Graph::addEdge(int a, int b){
