@@ -19,7 +19,7 @@ Graph::Graph(int n) {
 	adj = vector< vector<int> >(n);
 }
 
-Graph::Graph(char * filename){
+Graph::Graph(const char * filename){
 	ifstream file(filename);
 
 	int c = 0;
