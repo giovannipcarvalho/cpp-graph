@@ -35,5 +35,11 @@ int main() {
 	assert(h.edgeExists(2, 3));
 	assert(h.edgeExists(3, 0));
 
+	h[0][0] = 2;
+	assert(h.edgeExists(0, 2));
+	h[0][0] = 1;
+	assert(h.edgeExists(0, 1));
+	
+
 	cout << "Tests passed" << endl;
 }
