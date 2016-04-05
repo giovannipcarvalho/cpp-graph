@@ -6,4 +6,3 @@ C++11 implementation of a pseudo-digraph.
 - make non-directed
 - output graph to file
 - comments in graph file
-- [] operator
