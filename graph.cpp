@@ -52,7 +52,7 @@ bool Graph::edgeExists(int a, int b){
 	return find(adj[a].begin(), adj[a].end(), b) != adj[a].end();
 }
 
-vector<int> & Graph::operator[] (int v) {
+vector<int> & Graph::operator [] (int v) {
 	return adj[v];
 }
 
