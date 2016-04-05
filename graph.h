@@ -25,7 +25,11 @@ public:
 
 	vector<int> & operator[] (int v);
 
+	void print (ostream & out);
+
 	~Graph();
 };
+
+ostream & operator << (ostream & out, Graph g);
 
 #endif

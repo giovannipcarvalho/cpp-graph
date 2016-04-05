@@ -56,6 +56,24 @@ vector<int> & Graph::operator [] (int v) {
 	return adj[v];
 }
 
+void Graph::print (ostream & out){
+	out << vertices << endl;
+	for (int i = 0; i < adj.size(); ++i){
+		for (int j = 0; j < adj[i].size(); ++j){
+			out << adj[i][j];
+			if(j < adj[i].size() - 1)
+				out << ' ';
+		}
+		if(i < adj.size() - 1)
+			out << endl;
+	}
+}
+
 Graph::~Graph() {
 	// do nothing
+}
+
+ostream & operator << (ostream & out, Graph g){
+	g.print(out);
+	return out;
 }
