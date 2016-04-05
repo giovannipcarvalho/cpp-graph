@@ -23,6 +23,8 @@ public:
 
 	bool edgeExists(int a, int b);
 
+	vector<int> & operator[] (int v);
+
 	~Graph();
 };
 
