@@ -1,6 +1,6 @@
 CC=g++
 
-CFLAGS=-Wall
+CFLAGS=-std=c++11#-Wall
 
 all: main.cpp
 	$(CC) $(FLAGS) main.cpp graph.cpp -o main
