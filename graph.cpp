@@ -39,17 +39,21 @@ Graph::Graph(const char * filename){
 	delete g;
 }
 
+int Graph::getVerticeCount() const{
+	return vertices;
+}
+
 void Graph::addEdge(int a, int b){
 	if(b < vertices)
 		adj[a].push_back(b);
 }
 
-vector<int> Graph::successors(int v){
+vector<int> Graph::successors(int v) const{
 	vector<int> r = adj[v]; // deep copy
 	return r;
 }
 
-bool Graph::edgeExists(int a, int b){
+bool Graph::edgeExists(int a, int b) const{
 	return find(adj[a].begin(), adj[a].end(), b) != adj[a].end();
 }
 

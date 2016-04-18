@@ -16,12 +16,14 @@ public:
 	Graph(int n);
 
 	Graph(const char * filename);
+	
+	int getVerticeCount() const;
 
 	void addEdge(int a, int b);
 
-	vector<int> successors(int v);
+	vector<int> successors(int v) const;
 
-	bool edgeExists(int a, int b);
+	bool edgeExists(int a, int b) const;
 
 	vector<int> & operator[] (int v);
 
