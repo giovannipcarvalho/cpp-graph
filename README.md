@@ -5,3 +5,4 @@ C++11 implementation of a pseudo-digraph.
 - make non-directed
 - comments in graph file
 - add exceptions
+- output successors operator >>
