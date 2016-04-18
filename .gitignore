@@ -61,3 +61,4 @@ tests.dSYM/
 
 main
 test
+test_utils
