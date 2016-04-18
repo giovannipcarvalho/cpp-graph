@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cassert>
 #include "graph.h"
 #include "utils.h"
 
@@ -10,6 +11,6 @@ int main(){
 	g.addEdge(0, 1);
 	g.addEdge(1, 0);
 	
-    cout << isSymmetric(g) << endl;
-    cout << hasLoop(g) << endl;
+    assert(isSymmetric(g));
+    assert(hasLoop(g));
 }
