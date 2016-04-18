@@ -13,4 +13,12 @@ bool isSymmetric(const Graph g){
     return true;
 }
 
+bool hasLoop(const Graph g){
+    int v = g.getVerticeCount();
+    for(int i = 0; i < v; ++i)
+        if(g.edgeExists(i, i))
+            return true;
+    return false;
+}
+
 #endif
