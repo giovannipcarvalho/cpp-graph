@@ -48,4 +48,12 @@ bool isCyclic(const Graph g){
     return false;
 }
 
+bool isCycleGraph(const Graph g){
+    for (int i = 0; i < g.getVerticeCount() - 1; ++i){
+        if(!g.edgeExists(i, i+1))
+            return false;
+    }
+    return g.edgeExists(g.getVerticeCount()-1, 0);
+}
+
 #endif
