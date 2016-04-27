@@ -48,12 +48,18 @@ bool isCyclic(const Graph g){
     return false;
 }
 
+int isCycleGraph_DFS_util(const Graph & g, int v, int s = 0){
+    if(s < g.getVerticeCount()-1 && g.successors(v).size() > 0)
+        return isCycleGraph_DFS_util(g, g.successors(v)[0], s+1);
+    else
+        if(g.successors(v).size() > 0)
+            return g.successors(v)[0];
+        else
+            return -1;
+}
+
 bool isCycleGraph(const Graph g){
-    for (int i = 0; i < g.getVerticeCount() - 1; ++i){
-        if(!g.edgeExists(i, i+1))
-            return false;
-    }
-    return g.edgeExists(g.getVerticeCount()-1, 0);
+   return isCycleGraph_DFS_util(g, 0) == 0;
 }
 
 #endif
