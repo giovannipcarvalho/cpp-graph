@@ -13,4 +13,13 @@ int main(){
 	
     assert(isSymmetric(g));
     assert(hasLoop(g));
+
+    Graph h(3);
+    h.addEdge(0, 1);
+    h.addEdge(1, 2);
+    h.addEdge(2, 0);
+
+    assert(isCyclic(h));
+
+    cout << "Tests passed." << endl;
 }
