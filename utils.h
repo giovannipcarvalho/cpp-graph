@@ -23,11 +23,11 @@ bool hasLoop(const Graph g){
 
 enum Color { white, gray, black };
 
-bool DFS(const Graph & g, int u, vector<Color> & c){
+bool isCyclic_DFS_util(const Graph & g, int u, vector<Color> & c){
     c[u] = gray;
     for(auto v : g.successors(u)){
         if(c[v] == white){
-            return DFS(g, v, c);
+            return isCyclic_DFS_util(g, v, c);
         } else if(c[v] == gray){
             return true;
         }
@@ -40,7 +40,7 @@ bool isCyclic(const Graph g){
     vector<Color> c = vector<Color>(g.getVerticeCount(), white);
     for (int i = 0; i < g.getVerticeCount(); ++i){
         if(c[i] == white){
-            bool hasCycle = DFS(g, i, c);
+            bool hasCycle = isCyclic_DFS_util(g, i, c);
             if (hasCycle)
                 return true;
         }
