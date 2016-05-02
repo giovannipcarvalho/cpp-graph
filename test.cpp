@@ -52,5 +52,5 @@ int main() {
 	assert(ul.edgeExists(2, 1));
 	assert(ul.edgeExists(0, 2));
 
-	cout << "Tests passed" << endl;
+	cout << "Tests passed." << endl;
 }
