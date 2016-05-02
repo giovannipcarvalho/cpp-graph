@@ -48,12 +48,33 @@ int main(){
     i.addEdge(4, 3);
     i.addEdge(5, 3);
     
-    vector<int> paths = shortest_path(i);
-    vector<int> v = {-1,0,0,2,0,3};
-    assert(paths == v);
+    // same graph, different vertice numbers
+    Graph m(6);
+    m.addEdge(0, 4);
+    m.addEdge(1, 5);
+    m.addEdge(1, 4);
+    m.addEdge(2, 5);
+    m.addEdge(2, 3);
+    m.addEdge(3, 2);
+    m.addEdge(3, 5);
+    m.addEdge(3, 4);
+    m.addEdge(4, 3);
+    m.addEdge(4, 1);
+    m.addEdge(4, 0);
+    m.addEdge(5, 2);
+    m.addEdge(5, 3);
+    m.addEdge(5, 1);
+    
+    vector<int> ipaths = shortest_path(i, 0);
+    vector<int> iv = {-1,0,0,2,0,3};
+    vector<int> mpaths = shortest_path(m, 5);
+    vector<int> mv = {4,5,5,5,3,-1};
+    
+    assert(ipaths == iv);
+    assert(mpaths == mv);
+    
     //   print each shortest path
     //   print_all_paths(paths);
-    
     
     Graph k(3);
     k.addEdge(0,1);
