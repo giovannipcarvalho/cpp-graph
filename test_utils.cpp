@@ -64,6 +64,12 @@ int main(){
     DFS_visit(k, c, 0);
     for (auto i : c)
         assert(i == black);
+        
+        
+    Graph l(3);
+    l.addEdge(0, 1);
+    l.addEdge(0, 2);
+    assert(isWeaklyConnected(l));
     
     cout << "Tests passed." << endl;
 }
