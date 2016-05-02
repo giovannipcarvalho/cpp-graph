@@ -26,6 +26,8 @@ public:
 	bool edgeExists(int a, int b) const;
 
 	vector<int> & operator[] (int v);
+	
+	Graph underlyingGraph() const;
 
 	void print (ostream & out);
 

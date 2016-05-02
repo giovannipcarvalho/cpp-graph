@@ -61,6 +61,19 @@ vector<int> & Graph::operator [] (int v) {
 	return adj[v];
 }
 
+Graph Graph::underlyingGraph() const{
+	Graph g(getVerticeCount());
+	
+	for(int i = 0; i < getVerticeCount(); ++i){
+		for(int j = 0; j < successors(i).size(); ++j){
+			g.addEdge(i, successors(i)[j]);
+			g.addEdge(successors(i)[j], i);
+		}
+	}
+	
+	return g;
+}
+
 void Graph::print (ostream & out){
 	out << vertices << endl;
 	for (int i = 0; i < adj.size(); ++i){
