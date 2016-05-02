@@ -40,6 +40,17 @@ int main() {
 	h[0][0] = 1;
 	assert(h.edgeExists(0, 1));
 	
+	
+	Graph i(3);
+	i.addEdge(0, 1);
+	i.addEdge(1, 2);
+	i.addEdge(2, 0);
+	
+	Graph ul = i.underlyingGraph();
+	
+	assert(ul.edgeExists(1, 0));
+	assert(ul.edgeExists(2, 1));
+	assert(ul.edgeExists(0, 2));
 
 	cout << "Tests passed" << endl;
 }
