@@ -62,4 +62,44 @@ bool isCycleGraph(const Graph g){
    return isCycleGraph_DFS_util(g, 0) == 0;
 }
 
+
+
+void print_path(vector<int> paths, int v){
+    if (paths[v] == -1)
+        cout << v;
+    else {
+        print_path(paths, paths[v]);
+        cout << " -> " << v;
+    }
+}
+
+void print_all_paths(vector<int> paths){
+    for(int i = 1; i < paths.size(); ++i){
+        print_path(paths, i);
+        cout << endl;
+    }
+}
+
+
+//BFS based
+vector<int> shortest_path(Graph g){
+    vector<Color> c = vector<Color>(g.getVerticeCount(), white);
+    vector<int> paths = vector<int>(g.getVerticeCount(), -1);
+    
+    for(int i = 0; i < g.getVerticeCount(); ++i){
+        c[i] = gray;
+        
+        for(int j = 0; j < g.successors(i).size(); ++j){
+            if(c[g.successors(i)[j]] == white){
+                paths[g.successors(i)[j]] = i;
+                c[g.successors(i)[j]] = gray;
+            }
+        }
+        
+        c[i] = black;
+    }
+    
+    return paths;
+}
+
 #endif
