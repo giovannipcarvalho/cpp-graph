@@ -102,4 +102,17 @@ vector<int> shortest_path(Graph g){
     return paths;
 }
 
+
+void DFS_visit(const Graph & g, vector<Color> & c, int v){
+    c[v] = gray;
+    
+    for(auto s : g.successors(v)){
+        if(c[s] == white){
+            DFS_visit(g, c, s);
+        }
+    }
+    
+    c[v] = black;
+}
+
 #endif
