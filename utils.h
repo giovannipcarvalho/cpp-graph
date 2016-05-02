@@ -74,12 +74,13 @@ void print_path(vector<int> paths, int v){
 }
 
 void print_all_paths(vector<int> paths){
-    for(int i = 1; i < paths.size(); ++i){
+    for(int i = 0; i < paths.size(); ++i){
+        if(paths[i] == -1)
+            continue;
         print_path(paths, i);
         cout << endl;
     }
 }
-
 
 //BFS based
 vector<int> shortest_path(Graph g, int v){
