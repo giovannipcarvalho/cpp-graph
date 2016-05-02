@@ -54,5 +54,16 @@ int main(){
     //   print each shortest path
     //   print_all_paths(paths);
     
+    
+    Graph k(3);
+    k.addEdge(0,1);
+    k.addEdge(1,2);
+    k.addEdge(2,0);
+    
+    vector<Color> c = vector<Color>(k.getVerticeCount(), white);
+    DFS_visit(k, c, 0);
+    for (auto i : c)
+        assert(i == black);
+    
     cout << "Tests passed." << endl;
 }
