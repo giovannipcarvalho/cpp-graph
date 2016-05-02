@@ -115,4 +115,18 @@ void DFS_visit(const Graph & g, vector<Color> & c, int v){
     c[v] = black;
 }
 
+bool isWeaklyConnected(Graph g){
+    vector<Color> c = vector<Color>(g.getVerticeCount(), white);
+    
+    // get underlying graph
+    Graph ul = g.underlyingGraph();
+    
+    // check if ul is connected
+    // dfs visit 
+    DFS_visit(ul, c, 0);
+    
+    // doesn't have unvisited (white) vertices
+    return find(begin(c), end(c), white) == end(c);
+}
+
 #endif
