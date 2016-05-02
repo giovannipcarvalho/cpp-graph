@@ -21,7 +21,6 @@ int main(){
 
     assert(isCyclic(h));
 
-
     Graph j(8);
     j.addEdge(0, 4);
     j.addEdge(1, 5);
@@ -32,6 +31,28 @@ int main(){
     j.addEdge(6, 2);
     j.addEdge(7, 0);
     assert(isCycleGraph(j));
-
+   
+    Graph i(6);
+    i.addEdge(0, 1);
+    i.addEdge(0, 2);
+    i.addEdge(0, 4);
+    i.addEdge(1, 2);
+    i.addEdge(1, 0);
+    i.addEdge(2, 0);
+    i.addEdge(2, 1);
+    i.addEdge(2, 3);
+    i.addEdge(3, 2);
+    i.addEdge(3, 4);
+    i.addEdge(3, 5);
+    i.addEdge(4, 0);
+    i.addEdge(4, 3);
+    i.addEdge(5, 3);
+    
+    vector<int> paths = shortest_path(i);
+    vector<int> v = {-1,0,0,2,0,3};
+    assert(paths == v);
+    //   print each shortest path
+    //   print_all_paths(paths);
+    
     cout << "Tests passed." << endl;
 }
