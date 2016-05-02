@@ -82,17 +82,23 @@ void print_all_paths(vector<int> paths){
 
 
 //BFS based
-vector<int> shortest_path(Graph g){
+vector<int> shortest_path(Graph g, int v){
     vector<Color> c = vector<Color>(g.getVerticeCount(), white);
     vector<int> paths = vector<int>(g.getVerticeCount(), -1);
     
-    for(int i = 0; i < g.getVerticeCount(); ++i){
+    list<int> queue;
+    queue.push_back(v);
+    
+    while(!queue.empty()){
+        int i = queue.front();
+        queue.pop_front();
         c[i] = gray;
         
-        for(int j = 0; j < g.successors(i).size(); ++j){
-            if(c[g.successors(i)[j]] == white){
-                paths[g.successors(i)[j]] = i;
-                c[g.successors(i)[j]] = gray;
+        for(auto s : g.successors(i)){
+            if(c[s] == white){
+                paths[s] = i;
+                c[s] = gray;
+                queue.push_back(s);
             }
         }
         
