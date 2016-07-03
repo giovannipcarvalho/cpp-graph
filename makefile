@@ -7,13 +7,15 @@ all: main.cpp
 
 test: test.cpp
 	$(CC) $(CFLAGS) graph.cpp test.cpp -o test
-
-test2: test2.cpp
-	$(CC) $(CFLAGS) graph.cpp test2.cpp -o test
-
-test_utils: test_utils.cpp
+	$(CC) $(CFLAGS) graph.cpp test2.cpp -o test2
 	$(CC) $(CFLAGS) graph.cpp test_utils.cpp -o test_utils
+	@echo "===Testing main:"
+	@./test
+	@echo "===Testing Utils"
+	@./test_utils
+	@echo "===Testing VA2:"
+	@./test2
 
 .PHONY: clean
 clean:
-	rm main test test_utils
+	rm main test test2 test_utils
