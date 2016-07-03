@@ -4,9 +4,9 @@
 bool isSymmetric(const Graph g){
     int v = g.getVerticeCount();
     for(int i = 0; i < v; ++i){
-        vector<int> successors = g.successors(i);
+        vector<successor> successors = g.successors(i);
         for(int j = 0; j < successors.size(); ++j){
-            if(!g.edgeExists(successors[j], i))
+            if(!g.edgeExists(successors[j].index, i))
                 return false;
         }
     }
@@ -26,9 +26,9 @@ enum Color { white, gray, black };
 bool isCyclic_DFS_util(const Graph & g, int u, vector<Color> & c){
     c[u] = gray;
     for(auto v : g.successors(u)){
-        if(c[v] == white){
-            return isCyclic_DFS_util(g, v, c);
-        } else if(c[v] == gray){
+        if(c[v.index] == white){
+            return isCyclic_DFS_util(g, v.index, c);
+        } else if(c[v.index] == gray){
             return true;
         }
     }
@@ -50,10 +50,10 @@ bool isCyclic(const Graph g){
 
 int isCycleGraph_DFS_util(const Graph & g, int v, int s = 0){
     if(s < g.getVerticeCount()-1 && g.successors(v).size() > 0)
-        return isCycleGraph_DFS_util(g, g.successors(v)[0], s+1);
+        return isCycleGraph_DFS_util(g, g.successors(v)[0].index, s+1);
     else
         if(g.successors(v).size() > 0)
-            return g.successors(v)[0];
+            return g.successors(v)[0].index;
         else
             return -1;
 }
@@ -96,10 +96,10 @@ vector<int> shortest_path(Graph g, int v){
         c[i] = gray;
         
         for(auto s : g.successors(i)){
-            if(c[s] == white){
-                paths[s] = i;
-                c[s] = gray;
-                queue.push_back(s);
+            if(c[s.index] == white){
+                paths[s.index] = i;
+                c[s.index] = gray;
+                queue.push_back(s.index);
             }
         }
         
@@ -114,8 +114,8 @@ void DFS_visit(const Graph & g, vector<Color> & c, int v){
     c[v] = gray;
     
     for(auto s : g.successors(v)){
-        if(c[s] == white){
-            DFS_visit(g, c, s);
+        if(c[s.index] == white){
+            DFS_visit(g, c, s.index);
         }
     }
     
