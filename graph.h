@@ -2,6 +2,7 @@
 #include <list>
 #include <algorithm>
 #include <utility>
+#include <string>
 
 using namespace std;
 
@@ -20,6 +21,7 @@ class Graph
 private:
 	int vertices;
 	vector< vector<successor> > adj;
+	vector< string > name;
 
 public:
 	Graph(int n);
@@ -27,6 +29,10 @@ public:
 	Graph(const char * filename);
 	
 	int getVerticeCount() const;
+
+	void setName(int v, string name);
+
+	string getName(int v) const;
 
 	void addEdge(int a, int b);
 

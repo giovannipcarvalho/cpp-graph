@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 #include <fstream>
 #include <cstring>
 #include "graph.h"
@@ -18,6 +17,7 @@ void edge_adder(Graph & g, int v, string line){
 Graph::Graph(int n) {
 	vertices = n;
 	adj = vector< vector<successor> >(n);
+	name = vector< string >(n);
 }
 
 Graph::Graph(const char * filename){
@@ -41,6 +41,15 @@ Graph::Graph(const char * filename){
 
 int Graph::getVerticeCount() const{
 	return vertices;
+}
+
+void Graph::setName(int v, string newName){
+	if (v < vertices)
+		name[v] = newName;
+}
+
+string Graph::getName(int v) const{
+	return name[v];
 }
 
 void Graph::addEdge(int a, int b){
