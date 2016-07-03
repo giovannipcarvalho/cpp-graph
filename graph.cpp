@@ -73,6 +73,13 @@ bool Graph::edgeExists(int a, successor b) const{
 	return find(adj[a].begin(), adj[a].end(), b) != adj[a].end();
 }
 
+int Graph::getWeight(int a, int b) const{
+	if(!edgeExists(a, b))
+		return -1;
+	else
+		return find(adj[a].begin(), adj[a].end(), b)->weight;
+}
+
 vector<successor> & Graph::operator [] (int v) {
 	return adj[v];
 }

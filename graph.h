@@ -40,6 +40,8 @@ public:
 	
 	bool edgeExists(int a, successor b) const;
 
+	int getWeight(int a, int b) const;
+
 	vector<successor> & operator[] (int v);
 	
 	Graph underlyingGraph() const;
