@@ -17,5 +17,15 @@ int main() {
 	assert(a.getName(0) == "");
 	a.setName(0, "Named");
 	assert(a.getName(0) == "Named");
+
+	Graph b("wgraph-file.txt", true);
+	assert(b.edgeExists(0, 1));
+	assert(b.edgeExists(0, 2));
+	assert(b.edgeExists(0, 3));
+	assert(b.getWeight(0, 1) == 30);
+	assert(b.getWeight(0, 2) == 110);
+	assert(b.getWeight(0, 3) == 100);
+	//cout << b << endl;
+
 	cout << "Tests passed." << endl;
 }
