@@ -135,6 +135,8 @@ Graph Graph::underlyingGraph() const{
 void Graph::print (ostream & out){
 	out << vertices << endl;
 	for (int i = 0; i < adj.size(); ++i){
+		if(getName(i) != "")
+			out << getName(i) << " ";
 		for (int j = 0; j < adj[i].size(); ++j){
 			if(weighted)
 				out << adj[i][j];
