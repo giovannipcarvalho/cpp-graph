@@ -9,7 +9,7 @@ test: test.cpp
 	$(CC) $(CFLAGS) graph.cpp test.cpp -o test
 	$(CC) $(CFLAGS) graph.cpp test2.cpp -o test2
 	$(CC) $(CFLAGS) graph.cpp test_utils.cpp -o test_utils
-	@echo "===Testing main:"
+	@echo "===Testing core:"
 	@./test
 	@echo "===Testing Utils"
 	@./test_utils
