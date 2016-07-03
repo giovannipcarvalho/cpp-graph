@@ -14,13 +14,33 @@ void edge_adder(Graph & g, int v, string line){
 	}
 }
 
+void weighted_edge_adder(Graph & g, int v, string line){
+	char * str = (char*) line.c_str();
+	char * cp = strtok(str, " ");
+
+	//set vertice v name
+	g.setName(v, cp);
+	cp = strtok(nullptr, " ");
+
+	while(cp != nullptr){
+		int succIndex = atoi(cp);
+		cp = strtok(nullptr, " ");
+		int succWeight = atoi(cp);
+
+		g.addEdge(v, succIndex, succWeight);
+		cp = strtok(nullptr, " ");
+	}
+}
+
 Graph::Graph(int n) {
 	vertices = n;
 	adj = vector< vector<successor> >(n);
 	name = vector< string >(n);
 }
 
-Graph::Graph(const char * filename){
+Graph::Graph(const char * filename, bool isWeighted){
+	weighted = isWeighted;
+
 	ifstream file(filename);
 
 	int c = 0;
@@ -30,8 +50,14 @@ Graph::Graph(const char * filename){
 	for (string line; getline(file, line); ){
 		if(c == 0)
 			g = new Graph(atoi(line.c_str())); // init graph
-		else
-			edge_adder(*g, c-1, line);
+		else {
+			//unweighted
+			if(!weighted)
+				edge_adder(*g, c-1, line);
+			//weighted
+			else
+				weighted_edge_adder(*g, c-1, line);
+		}
 		++c;
 	}
 

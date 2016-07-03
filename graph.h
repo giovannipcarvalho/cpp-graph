@@ -22,11 +22,12 @@ private:
 	int vertices;
 	vector< vector<successor> > adj;
 	vector< string > name;
+	bool weighted = false;
 
 public:
 	Graph(int n);
 
-	Graph(const char * filename);
+	Graph(const char * filename, bool isWeighted = false);
 	
 	int getVerticeCount() const;
 
