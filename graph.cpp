@@ -40,8 +40,6 @@ Graph::Graph(int n) {
 }
 
 Graph::Graph(const char * filename, bool isWeighted){
-	weighted = isWeighted;
-
 	ifstream file(filename);
 
 	int c = 0;
@@ -53,7 +51,7 @@ Graph::Graph(const char * filename, bool isWeighted){
 			g = new Graph(atoi(line.c_str())); // init graph
 		else {
 			//unweighted
-			if(!weighted)
+			if(!isWeighted)
 				edge_adder(*g, c-1, line);
 			//weighted
 			else
@@ -64,6 +62,7 @@ Graph::Graph(const char * filename, bool isWeighted){
 
 	*this = *g;
 	delete g;
+	weighted = isWeighted;
 }
 
 int Graph::getVerticeCount() const{
