@@ -44,13 +44,15 @@ int Graph::getVerticeCount() const{
 }
 
 void Graph::addEdge(int a, int b){
+	successor s = {b, 1};
 	if(b < vertices)
-		adj[a].push_back({b, 1});
+		adj[a].push_back(s);
 }
 
 void Graph::addEdge(int a, int b, int w){
+	successor s = {b, w};
 	if(b < vertices)
-		adj[a].push_back({b, w});
+		adj[a].push_back(s);
 }
 
 void Graph::addEdge(int a, successor b){
