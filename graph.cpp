@@ -17,7 +17,7 @@ void edge_adder(Graph & g, int v, string line){
 
 Graph::Graph(int n) {
 	vertices = n;
-	adj = vector< vector<int> >(n);
+	adj = vector< vector<successor> >(n);
 }
 
 Graph::Graph(const char * filename){
@@ -45,11 +45,21 @@ int Graph::getVerticeCount() const{
 
 void Graph::addEdge(int a, int b){
 	if(b < vertices)
+		adj[a].push_back({b, 1});
+}
+
+void Graph::addEdge(int a, int b, int w){
+	if(b < vertices)
+		adj[a].push_back({b, w});
+}
+
+void Graph::addEdge(int a, successor b){
+	if(b.succIndex < vertices)
 		adj[a].push_back(b);
 }
 
-vector<int> Graph::successors(int v) const{
-	vector<int> r = adj[v]; // deep copy
+vector<successor> Graph::successors(int v) const{
+	vector<successor> r = adj[v]; // deep copy
 	return r;
 }
 
@@ -57,7 +67,11 @@ bool Graph::edgeExists(int a, int b) const{
 	return find(adj[a].begin(), adj[a].end(), b) != adj[a].end();
 }
 
-vector<int> & Graph::operator [] (int v) {
+bool Graph::edgeExists(int a, successor b) const{
+	return find(adj[a].begin(), adj[a].end(), b) != adj[a].end();
+}
+
+vector<successor> & Graph::operator [] (int v) {
 	return adj[v];
 }
 
@@ -67,7 +81,7 @@ Graph Graph::underlyingGraph() const{
 	for(int i = 0; i < getVerticeCount(); ++i){
 		for(int j = 0; j < successors(i).size(); ++j){
 			g.addEdge(i, successors(i)[j]);
-			g.addEdge(successors(i)[j], i);
+			g.addEdge(successors(i)[j].succIndex, i);
 		}
 	}
 	
@@ -94,4 +108,17 @@ Graph::~Graph() {
 ostream & operator << (ostream & out, Graph g){
 	g.print(out);
 	return out;
+}
+
+ostream & operator << (ostream & out, successor s){
+	out << s.succIndex << ' ' << s.succWeight;
+	return out;
+}
+
+bool operator == (const successor & a, const int & b){
+	return a.succIndex == b;
+}
+
+bool operator == (const successor & a, const successor & b){
+	return a.succIndex == b.succIndex;
 }

@@ -1,17 +1,25 @@
 #include <vector>
 #include <list>
 #include <algorithm>
+#include <utility>
 
 using namespace std;
 
 #ifndef Graph_H
 #define Graph_H
 
+//typedef pair<int, int> successor;
+
+struct successor {
+	int succIndex;
+	int succWeight;
+};
+
 class Graph
 {
 private:
 	int vertices;
-	vector< vector<int> > adj;
+	vector< vector<successor> > adj;
 
 public:
 	Graph(int n);
@@ -22,11 +30,17 @@ public:
 
 	void addEdge(int a, int b);
 
-	vector<int> successors(int v) const;
+	void addEdge(int a, int b, int w);
+
+	void addEdge(int a, successor b);
+
+	vector<successor> successors(int v) const;
 
 	bool edgeExists(int a, int b) const;
+	
+	bool edgeExists(int a, successor b) const;
 
-	vector<int> & operator[] (int v);
+	vector<successor> & operator[] (int v);
 	
 	Graph underlyingGraph() const;
 
@@ -36,5 +50,9 @@ public:
 };
 
 ostream & operator << (ostream & out, Graph g);
+
+ostream & operator << (ostream & out, successor s);
+
+//bool operator == (const successor & a, const int & b);
 
 #endif
