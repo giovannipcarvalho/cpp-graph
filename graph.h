@@ -9,8 +9,6 @@ using namespace std;
 #ifndef Graph_H
 #define Graph_H
 
-//typedef pair<int, int> successor;
-
 struct successor {
 	int index;
 	int weight;
