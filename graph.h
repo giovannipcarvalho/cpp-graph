@@ -20,7 +20,7 @@ private:
 	int vertices;
 	vector< vector<successor> > adj;
 	vector< string > name;
-	bool weighted = false;
+	bool weighted;
 
 public:
 	Graph(int n);

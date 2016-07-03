@@ -36,6 +36,7 @@ Graph::Graph(int n) {
 	vertices = n;
 	adj = vector< vector<successor> >(n);
 	name = vector< string >(n);
+	weighted = false;
 }
 
 Graph::Graph(const char * filename, bool isWeighted){
