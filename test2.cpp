@@ -14,5 +14,8 @@ int main() {
 	assert(a[0][0].index == 1);
 	assert(a[0][0].weight == 3);
 
+	assert(a.getName(0) == "");
+	a.setName(0, "Named");
+	assert(a.getName(0) == "Named");
 	cout << "Tests passed." << endl;
 }
