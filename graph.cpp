@@ -136,7 +136,10 @@ void Graph::print (ostream & out){
 	out << vertices << endl;
 	for (int i = 0; i < adj.size(); ++i){
 		for (int j = 0; j < adj[i].size(); ++j){
-			out << adj[i][j];
+			if(weighted)
+				out << adj[i][j];
+			else
+				cout << adj[i][j].index;
 			if(j < adj[i].size() - 1)
 				out << ' ';
 		}
