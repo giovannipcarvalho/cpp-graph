@@ -16,6 +16,12 @@ test: test.cpp
 	@echo "===Testing VA2:"
 	@./test2
 
+MCP: 
+	$(CC) $(CFLAGS) graph.cpp MCP.cpp -o MCP && ./MCP
+
+MST:
+	$(CC) $(CFLAGS) graph.cpp MST.cpp -o MST && ./MST
+
 .PHONY: clean
 clean:
 	rm main test test2 test_utils
