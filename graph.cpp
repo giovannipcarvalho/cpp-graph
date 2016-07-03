@@ -54,7 +54,7 @@ void Graph::addEdge(int a, int b, int w){
 }
 
 void Graph::addEdge(int a, successor b){
-	if(b.succIndex < vertices)
+	if(b.index < vertices)
 		adj[a].push_back(b);
 }
 
@@ -81,7 +81,7 @@ Graph Graph::underlyingGraph() const{
 	for(int i = 0; i < getVerticeCount(); ++i){
 		for(int j = 0; j < successors(i).size(); ++j){
 			g.addEdge(i, successors(i)[j]);
-			g.addEdge(successors(i)[j].succIndex, i);
+			g.addEdge(successors(i)[j].index, i);
 		}
 	}
 	
@@ -111,14 +111,14 @@ ostream & operator << (ostream & out, Graph g){
 }
 
 ostream & operator << (ostream & out, successor s){
-	out << s.succIndex << ' ' << s.succWeight;
+	out << s.index << ' ' << s.weight;
 	return out;
 }
 
 bool operator == (const successor & a, const int & b){
-	return a.succIndex == b;
+	return a.index == b;
 }
 
 bool operator == (const successor & a, const successor & b){
-	return a.succIndex == b.succIndex;
+	return a.index == b.index;
 }

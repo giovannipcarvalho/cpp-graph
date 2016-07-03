@@ -11,8 +11,8 @@ using namespace std;
 //typedef pair<int, int> successor;
 
 struct successor {
-	int succIndex;
-	int succWeight;
+	int index;
+	int weight;
 };
 
 class Graph
