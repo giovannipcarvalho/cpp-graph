@@ -24,4 +24,4 @@ MST:
 
 .PHONY: clean
 clean:
-	rm main test test2 test_utils
+	@-rm -f main test test2 test_utils MCP MST
