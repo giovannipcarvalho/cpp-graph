@@ -13,7 +13,7 @@ int main() {
 	g.addEdge(2, 3);
 	g.addEdge(3, 0);
 
-	assert(g.successors(0)[0] == 1);
+	assert(g.successors(0)[0].index == 1);
 
 	assert(g.edgeExists(0, 1));
 	assert(g.edgeExists(1, 0));
@@ -26,7 +26,7 @@ int main() {
 	char file[] = "graph-file.txt";
 	Graph h(file);
 
-	assert(h.successors(0)[0] == 1);
+	assert(h.successors(0)[0].index == 1);
 
 	assert(h.edgeExists(0, 1));
 	assert(h.edgeExists(1, 0));
@@ -35,9 +35,9 @@ int main() {
 	assert(h.edgeExists(2, 3));
 	assert(h.edgeExists(3, 0));
 
-	h[0][0] = 2;
+	h[0][0].index = 2;
 	assert(h.edgeExists(0, 2));
-	h[0][0] = 1;
+	h[0][0].index = 1;
 	assert(h.edgeExists(0, 1));
 	
 	
