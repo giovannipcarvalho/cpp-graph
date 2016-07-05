@@ -1,4 +1,4 @@
-#include "MST.H"
+#include "MST.h"
 
 using namespace std;
 
