@@ -1,27 +1,42 @@
-CC=g++
+CC := g++ -std=c++11 # This is the main compiler
+# CC := clang --analyze # and comment out the linker last line for sanity
+SRCDIR := src
+BUILDDIR := build
+TARGET := bin/runner
+TARGETDIR := bin
+ 
+SRCEXT := cpp
+SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
+OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.o))
+CFLAGS := -g # -Wall
+LIB := 
+INC := -I include
 
-CFLAGS=-std=c++11#-Wall
+$(TARGET): $(OBJECTS)
+	@echo " Linking..."
+	@mkdir -p $(TARGETDIR)
+	$(eval MAIN_FILES = $(shell nm -A $(BUILDDIR)/* | grep 'T main' | cut -d ':' -f1))
+	@$(foreach main, $(MAIN_FILES), \
+		$(eval target = $(subst build, bin, $(main))) \
+		$(eval objects_link = $(filter-out $(MAIN_FILES), $(OBJECTS))) \
+		echo "$(CC) $(objects_link) $(main) -o $(target:.o=) $(LIB)" ; \
+		$(CC) $(objects_link) $(main) -o $(target:.o=) $(LIB); \
+	)
 
-all: main.cpp
-	$(CC) $(CFLAGS) graph.cpp main.cpp -o main
+$(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
+	@mkdir -p $(BUILDDIR)
+	@echo " $(CC) $(CFLAGS) $(INC) -c -o $@ $<"; $(CC) $(CFLAGS) $(INC) -c -o $@ $<
 
-test: test.cpp
-	$(CC) $(CFLAGS) graph.cpp test.cpp -o test
-	$(CC) $(CFLAGS) graph.cpp test2.cpp -o test2
-	$(CC) $(CFLAGS) graph.cpp test_utils.cpp -o test_utils
-	@echo "===Testing core:"
-	@./test
-	@echo "===Testing Utils"
-	@./test_utils
-	@echo "===Testing VA2:"
-	@./test2
+clean:
+	@echo " Cleaning..."; 
+	@echo " $(RM) -r $(BUILDDIR) $(TARGETDIR)"; $(RM) -r $(BUILDDIR) $(TARGETDIR)
 
-MCP: 
-	$(CC) $(CFLAGS) graph.cpp MCP.cpp -o MCP && ./MCP
+# Tests
+tester:
+	$(CC) $(CFLAGS) test/tester.cpp $(INC) $(LIB) -o bin/tester
 
-MST:
-	$(CC) $(CFLAGS) graph.cpp MST.cpp -o MST && ./MST
+# Spikes
+ticket:
+	$(CC) $(CFLAGS) spikes/ticket.cpp $(INC) $(LIB) -o bin/ticket
 
 .PHONY: clean
-clean:
-	@-rm -f main test test2 test_utils MCP MST
