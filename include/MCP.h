@@ -6,7 +6,7 @@
 
 using namespace std;
 
-#define INFINITY 99999
+// #define INFINITY 99999
 
 /*
  * Source:
