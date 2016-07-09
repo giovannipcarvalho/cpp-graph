@@ -15,7 +15,7 @@ INC := -I include
 $(TARGET): $(OBJECTS)
 	@echo " Linking..."
 	@mkdir -p $(TARGETDIR)
-	$(eval MAIN_FILES = $(shell nm -A $(BUILDDIR)/* | grep 'T main' | cut -d ':' -f1))
+	$(eval MAIN_FILES = $(shell nm -A $(BUILDDIR)/* | grep 'T main\|T _main' | cut -d ':' -f1))
 	@$(foreach main, $(MAIN_FILES), \
 		$(eval target = $(subst build, bin, $(main))) \
 		$(eval objects_link = $(filter-out $(MAIN_FILES), $(OBJECTS))) \
